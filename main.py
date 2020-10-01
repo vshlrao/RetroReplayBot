@@ -1,7 +1,7 @@
 import praw
 import feedparser
 import config
-import time
+import emoji
 
 reddit = praw.Reddit(client_id=config.client_id,
                      client_secret=config.client_secret,
@@ -37,7 +37,7 @@ def main():
 
             # change wiki page to latest video
             # give title as reason for searchability
-            history_wp.edit(content=latest_link, reason=latest_title)
+            history_wp.edit(content=latest_link, reason=emoji.demojize(latest_title))
 
     except Exception as e:
         reddit.redditor('supabatman').message('Bot Problem', e)
